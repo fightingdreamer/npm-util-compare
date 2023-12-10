@@ -2,7 +2,7 @@
   Compare two values.
   @returns -1, 0, +1
 */
-export function compareAny<T>(a: T, b: T): number {
+export function compare<T>(a: T, b: T): number {
   if (a < b) return -1;
   if (b < a) return +1;
   return 0;
@@ -12,7 +12,7 @@ export function compareAny<T>(a: T, b: T): number {
   Compare two values in reversed order.
   @returns +1, 0, -1
 */
-export function compareAnyReversed<T>(a: T, b: T): number {
+export function compareReversed<T>(a: T, b: T): number {
   if (a < b) return +1;
   if (b < a) return -1;
   return 0;
@@ -22,16 +22,16 @@ export function compareAnyReversed<T>(a: T, b: T): number {
   Compare property of two objects.
   @returns +1, 0, -1
 */
-export function compareProps<T>(name: keyof T): typeof compareAny<T> {
-  return (a: T, b: T) => compareAny(a[name], b[name]);
+export function compareProperty<T>(name: keyof T): typeof compare<T> {
+  return (a: T, b: T) => compare(a[name], b[name]);
 }
 
 /**
   Compare property of two objects in reversed order.
   @returns +1, 0, -1
 */
-export function comparePropsReversed<T>(
+export function comparePropertyReversed<T>(
   name: keyof T,
-): typeof compareAnyReversed<T> {
-  return (a: T, b: T) => compareAnyReversed(a[name], b[name]);
+): typeof compareReversed<T> {
+  return (a: T, b: T) => compareReversed(a[name], b[name]);
 }
