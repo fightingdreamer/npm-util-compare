@@ -1,0 +1,40 @@
+{
+  "name": "@fightingdreamer/util-compare",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/util-compare.cjs",
+  "module": "./dist/util-compare.js",
+  "typings": "./dist/util-compare.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/util-compare.js",
+      "require": "./dist/util-compare.cjs"
+    }
+  },
+  "version": "0.1.0",
+  "description": "Missing default compare of two values.",
+  "scripts": {
+    "test": "vitest --run",
+    "test:watch": "vitest",
+    "build": "vite build",
+    "build:watch": "vite build --watch"
+  },
+  "keywords": [
+    "util", "compare"
+  ],
+  "author": {
+    "name": "Patryk Stępień"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/fightingdreamer/npm-util-compare",
+  "devDependencies": {
+    "vite": "^5.0.5",
+    "vite-plugin-dts": "^3.6.4",
+    "vitest": "^0.34.6"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
