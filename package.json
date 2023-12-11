@@ -13,7 +13,7 @@
       "require": "./dist/util-compare.cjs"
     }
   },
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Missing default compare of two values.",
   "scripts": {
     "test": "vitest --run",
