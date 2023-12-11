@@ -2,7 +2,7 @@
 
 ## Description
 
-Missong compare of two values.
+Missing compare of two values.
 
 Second implementation can compare property of two object.
 
