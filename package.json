@@ -13,7 +13,7 @@
       "require": "./dist/util-compare.cjs"
     }
   },
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Missing default compare of two values.",
   "scripts": {
     "test": "vitest --run",
@@ -22,7 +22,8 @@
     "build:watch": "vite build --watch"
   },
   "keywords": [
-    "util", "compare"
+    "util",
+    "compare"
   ],
   "author": {
     "name": "Patryk Stępień"
