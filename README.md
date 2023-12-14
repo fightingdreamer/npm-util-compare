@@ -37,10 +37,10 @@ for (const [index, value] of expect.entries()) {
 ```
 
 ```js
-import {compareProperty} from '@fightingdreamer/util-compare'
+import {compareFromProperty} from '@fightingdreamer/util-compare'
 
 const vector = [{p: 'c'}, {p: 'b'}, {p: 'a'}]
-const result = Array.from(vector).sort(compareProperty('p'))
+const result = Array.from(vector).sort(compareFromProperty('p'))
 const expect = [{p: 'a'}, {p: 'b'}, {p: 'c'}]
 for (const [index, value] of expect.entries()) {
     console.assert(result.at(index).p == value.p)
@@ -48,10 +48,10 @@ for (const [index, value] of expect.entries()) {
 ```
 
 ```js
-import {comparePropertyReversed} from 'fightingdreamer/util-compare'
+import {compareFromPropertyReversed} from 'fightingdreamer/util-compare'
 
 const vector = [{p: 'a'}, {p: 'b'}, {p: 'c'}]
-const result = Array.from(vector).sort(comparePropertyReversed('p'))
+const result = Array.from(vector).sort(compareFromPropertyReversed('p'))
 const expect = [{p: 'c'}, {p: 'b'}, {p: 'a'}]
 for (const [index, value] of expect.entries()) {
     console.assert(result.at(index).p == value.p)
@@ -83,10 +83,10 @@ for (const [index, value] of expect.entries()) {
 ```
 
 ```js
-const {compareProperty} = require('@fightingdreamer/util-compare')
+const {compareFromProperty} = require('@fightingdreamer/util-compare')
 
 const vector = [{p: 'c'}, {p: 'b'}, {p: 'a'}]
-const result = Array.from(vector).sort(compareProperty('p'))
+const result = Array.from(vector).sort(compareFromProperty('p'))
 const expect = [{p: 'a'}, {p: 'b'}, {p: 'c'}]
 for (const [index, value] of expect.entries()) {
     assert(result.at(index).p == value.p)
@@ -94,10 +94,10 @@ for (const [index, value] of expect.entries()) {
 ```
 
 ```js
-const {comparePropertyReversed} = require('@fightingdreamer/util-compare')
+const {compareFromPropertyReversed} = require('@fightingdreamer/util-compare')
 
 const vector = [{p: 'a'}, {p: 'b'}, {p: 'c'}]
-const result = Array.from(vector).sort(comparePropertyReversed('p'))
+const result = Array.from(vector).sort(compareFromPropertyReversed('p'))
 const expect = [{p: 'c'}, {p: 'b'}, {p: 'a'}]
 for (const [index, value] of expect.entries()) {
     assert(result.at(index).p == value.p)
@@ -116,11 +116,11 @@ function compareReversed<T>(a: T, b: T): number
 Will compare two values in reversed order.
 
 ```js
-function compareProperty<T>(name: keyof T): typeof compare<T>
+function compareFromProperty<T>(name: keyof T): typeof compare<T>
 ```
 Will return function that will compare property `name` of two object.
 
 ```js
-function comparePropertyReversed<T>(name: keyof T,): typeof compareReversed<T>
+function compareFromPropertyReversed<T>(name: keyof T,): typeof compareReversed<T>
 ```
 Will return function that will compare property `name` of two object in reversed order.

@@ -2,8 +2,8 @@ import { test, expect, describe } from "vitest";
 import {
   compare,
   compareReversed,
-  compareProperty,
-  comparePropertyReversed,
+  compareFromProperty,
+  compareFromPropertyReversed,
 } from "./compare";
 
 describe("compare", () => {
@@ -26,22 +26,22 @@ describe("compareReversed", () => {
   });
 });
 
-describe("compareProperty", () => {
+describe("compareFromProperty", () => {
   test.each([
     { a: { p: "a" }, b: { p: "b" }, expected: -1 },
     { a: { p: "" }, b: { p: "" }, expected: 0 },
     { a: { p: "b" }, b: { p: "1" }, expected: +1 },
   ])("compare($a, $b) -> $expected", ({ a, b, expected }) => {
-    expect(compareProperty("p")(a, b)).toEqual(expected);
+    expect(compareFromProperty("p")(a, b)).toEqual(expected);
   });
 });
 
-describe("comparePropertyReversed", () => {
+describe("compareFromPropertyReversed", () => {
   test.each([
     { a: { p: "a" }, b: { p: "b" }, expected: +1 },
     { a: { p: "" }, b: { p: "" }, expected: 0 },
     { a: { p: "b" }, b: { p: "1" }, expected: -1 },
   ])("compare($a, $b) -> $expected", ({ a, b, expected }) => {
-    expect(comparePropertyReversed("p")(a, b)).toEqual(expected);
+    expect(compareFromPropertyReversed("p")(a, b)).toEqual(expected);
   });
 });
