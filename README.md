@@ -165,24 +165,16 @@ function compareFromProperty<T>(name: keyof T): typeof compare<T>
 Will return function that will compare property `name` of two object.
 
 ```js
-function compareFromPropertyReversed<T>(name: keyof T,): typeof compareReversed<T>
+function compareFromPropertyReversed<T>(name: keyof T): typeof compareReversed<T>
 ```
 Will return function that will compare property `name` of two object in reversed order.
 
 ```js
-export function compareFromFunction<T, V>(
-  callbackFn: (value: T) => V,
-): typeof compare<T> {
-  return (a: T, b: T) => compare(callbackFn(a), callbackFn(b));
-}
+function compareFromFunction<T, V>(callbackFn: (value: T) => V): typeof compare<T>
 ```
 Will return function that will map two objects using `callbackFn` and compare results.
 
 ```js
-export function compareFromFunctionReversed<T, V>(
-  callbackFn: (value: T) => V,
-): typeof compare<T> {
-  return (a: T, b: T) => compareReversed(callbackFn(a), callbackFn(b));
-}
+function compareFromFunctionReversed<T, V>(callbackFn: (value: T) => V): typeof compare<T>
 ```
 Will return function that will map two objects using `callbackFn` and compare results in reversed order.
