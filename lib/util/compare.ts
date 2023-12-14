@@ -20,7 +20,7 @@ export function compareReversed<T>(a: T, b: T): number {
 
 /**
  * Compare property of two objects.
- * @returns +1, 0, -1
+ * @returns (a, b) => +1, 0, -1
  */
 export function compareProperty<T>(name: keyof T): typeof compare<T> {
   return (a: T, b: T) => compare(a[name], b[name]);
@@ -28,7 +28,7 @@ export function compareProperty<T>(name: keyof T): typeof compare<T> {
 
 /**
  * Compare property of two objects in reversed order.
- * @returns +1, 0, -1
+ * @returns (a, b) => +1, 0, -1
  */
 export function comparePropertyReversed<T>(
   name: keyof T,
