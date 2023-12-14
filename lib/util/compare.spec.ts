@@ -13,7 +13,7 @@ describe("compare", () => {
     { a: "a", b: "b", expected: -1 },
     { a: "", b: "", expected: 0 },
     { a: "b", b: "a", expected: +1 },
-  ])("compare($a, $b) -> $expected", ({ a, b, expected }) => {
+  ])("($a, $b) -> $expected", ({ a, b, expected }) => {
     expect(compare(a, b)).toEqual(expected);
   });
 });
@@ -23,7 +23,7 @@ describe("compareReversed", () => {
     { a: "a", b: "b", expected: +1 },
     { a: "", b: "", expected: 0 },
     { a: "b", b: "1", expected: -1 },
-  ])("compare($a, $b) -> $expected", ({ a, b, expected }) => {
+  ])("($a, $b) -> $expected", ({ a, b, expected }) => {
     expect(compareReversed(a, b)).toEqual(expected);
   });
 });
@@ -33,7 +33,7 @@ describe("compareFromProperty", () => {
     { a: { p: "a" }, b: { p: "b" }, expected: -1 },
     { a: { p: "" }, b: { p: "" }, expected: 0 },
     { a: { p: "b" }, b: { p: "1" }, expected: +1 },
-  ])("compare($a, $b) -> $expected", ({ a, b, expected }) => {
+  ])("($a, $b) -> $expected", ({ a, b, expected }) => {
     expect(compareFromProperty("p")(a, b)).toEqual(expected);
   });
 });
@@ -43,7 +43,7 @@ describe("compareFromPropertyReversed", () => {
     { a: { p: "a" }, b: { p: "b" }, expected: +1 },
     { a: { p: "" }, b: { p: "" }, expected: 0 },
     { a: { p: "b" }, b: { p: "1" }, expected: -1 },
-  ])("compare($a, $b) -> $expected", ({ a, b, expected }) => {
+  ])("($a, $b) -> $expected", ({ a, b, expected }) => {
     expect(compareFromPropertyReversed("p")(a, b)).toEqual(expected);
   });
 });
@@ -53,7 +53,7 @@ describe("compareFromFunction", () => {
     { a: { p: "a" }, b: { p: "b" }, fn: (o: any) => o.p, expected: -1 },
     { a: { p: "" }, b: { p: "" }, fn: (o: any) => o.p, expected: 0 },
     { a: { p: "b" }, b: { p: "1" }, fn: (o: any) => o.p, expected: +1 },
-  ])("compare($a, $b) -> $expected", ({ a, b, fn, expected }) => {
+  ])("($a, $b) -> $expected", ({ a, b, fn, expected }) => {
     expect(compareFromFunction(fn)(a, b)).toEqual(expected);
   });
 });
@@ -63,7 +63,7 @@ describe("compareFromFunctionReversed", () => {
     { a: { p: "a" }, b: { p: "b" }, fn: (o: any) => o.p, expected: +1 },
     { a: { p: "" }, b: { p: "" }, fn: (o: any) => o.p, expected: 0 },
     { a: { p: "b" }, b: { p: "1" }, fn: (o: any) => o.p, expected: -1 },
-  ])("compare($a, $b) -> $expected", ({ a, b, fn, expected }) => {
+  ])("($a, $b) -> $expected", ({ a, b, fn, expected }) => {
     expect(compareFromFunctionReversed(fn)(a, b)).toEqual(expected);
   });
 });
