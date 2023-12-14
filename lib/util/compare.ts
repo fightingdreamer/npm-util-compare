@@ -35,3 +35,23 @@ export function compareFromPropertyReversed<T>(
 ): typeof compareReversed<T> {
   return (a: T, b: T) => compareReversed(a[name], b[name]);
 }
+
+/**
+ * Compare two objects using custom function.
+ * @returns (a, b) => +1, 0, -1
+ */
+export function compareFromFunction<T, V>(
+  callbackFn: (value: T) => V,
+): typeof compare<T> {
+  return (a: T, b: T) => compare(callbackFn(a), callbackFn(b));
+}
+
+/**
+ * Compare two objects using custom function in reversed order.
+ * @returns (a, b) => +1, 0, -1
+ */
+export function compareFromFunctionReversed<T, V>(
+  callbackFn: (value: T) => V,
+): typeof compare<T> {
+  return (a: T, b: T) => compareReversed(callbackFn(a), callbackFn(b));
+}

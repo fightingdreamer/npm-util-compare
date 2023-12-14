@@ -58,6 +58,28 @@ for (const [index, value] of expect.entries()) {
 }
 ```
 
+```js
+import {compareFromFunction} from '@fightingdreamer/util-compare'
+
+const vector = [{p: 'c'}, {p: 'b'}, {p: 'a'}]
+const result = Array.from(vector).sort(compareFromFunction((o) => o.p))
+const expect = [{p: 'a'}, {p: 'b'}, {p: 'c'}]
+for (const [index, value] of expect.entries()) {
+    assert(result.at(index).p == value.p)
+}
+```
+
+```js
+import {compareFromFunctionReversed} from '@fightingdreamer/util-compare'
+
+const vector = [{p: 'a'}, {p: 'b'}, {p: 'c'}]
+const result = Array.from(vector).sort(compareFromFunctionReversed((o) => o.p))
+const expect = [{p: 'c'}, {p: 'b'}, {p: 'a'}]
+for (const [index, value] of expect.entries()) {
+    assert(result.at(index).p == value.p)
+}
+```
+
 ## Usage (node / commonjs)
 
 ```js
@@ -104,6 +126,28 @@ for (const [index, value] of expect.entries()) {
 }
 ```
 
+```js
+const {compareFromFunction} = require('@fightingdreamer/util-compare')
+
+const vector = [{p: 'c'}, {p: 'b'}, {p: 'a'}]
+const result = Array.from(vector).sort(compareFromFunction((o) => o.p))
+const expect = [{p: 'a'}, {p: 'b'}, {p: 'c'}]
+for (const [index, value] of expect.entries()) {
+    assert(result.at(index).p == value.p)
+}
+```
+
+```js
+const {compareFromFunctionReversed} = require('@fightingdreamer/util-compare')
+
+const vector = [{p: 'a'}, {p: 'b'}, {p: 'c'}]
+const result = Array.from(vector).sort(compareFromFunctionReversed((o) => o.p))
+const expect = [{p: 'c'}, {p: 'b'}, {p: 'a'}]
+for (const [index, value] of expect.entries()) {
+    assert(result.at(index).p == value.p)
+}
+```
+
 ## Functions
 ```js
 function compare<T>(a: T, b: T): number
@@ -124,3 +168,21 @@ Will return function that will compare property `name` of two object.
 function compareFromPropertyReversed<T>(name: keyof T,): typeof compareReversed<T>
 ```
 Will return function that will compare property `name` of two object in reversed order.
+
+```js
+export function compareFromFunction<T, V>(
+  callbackFn: (value: T) => V,
+): typeof compare<T> {
+  return (a: T, b: T) => compare(callbackFn(a), callbackFn(b));
+}
+```
+Will return function that will map two objects using `callbackFn` and compare results.
+
+```js
+export function compareFromFunctionReversed<T, V>(
+  callbackFn: (value: T) => V,
+): typeof compare<T> {
+  return (a: T, b: T) => compareReversed(callbackFn(a), callbackFn(b));
+}
+```
+Will return function that will map two objects using `callbackFn` and compare results in reversed order.
