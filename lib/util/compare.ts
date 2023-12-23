@@ -55,3 +55,25 @@ export function compareFromFunctionReversed<T, V>(
 ): typeof compare<T> {
   return (a: T, b: T) => compareReversed(callbackFn(a), callbackFn(b));
 }
+
+/**
+ * Compare two objects using compare functions with weights.
+ * @returns (a, b) => number
+ */
+export function compareFromMany<T>(
+  many: Array<{ compareFn: typeof compare<T>; weight: number }>,
+): typeof compare<T> {
+  return (a: T, b: T) =>
+    many.reduce((r, v) => r + v.compareFn(a, b) * v.weight, 0);
+}
+
+/**
+ * Compare two objects in reversed order using compare functions with weights.
+ * @returns (a, b) => number
+ */
+export function compareFromManyReversed<T>(
+  many: Array<{ compareFn: typeof compare<T>; weight: number }>,
+): typeof compare<T> {
+  return (a: T, b: T) =>
+    many.reduce((r, v) => r - v.compareFn(a, b) * v.weight, 0);
+}

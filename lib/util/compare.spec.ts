@@ -6,6 +6,8 @@ import {
   compareFromPropertyReversed,
   compareFromFunction,
   compareFromFunctionReversed,
+  compareFromMany,
+  compareFromManyReversed,
 } from "./compare";
 
 describe("compare", () => {
@@ -65,5 +67,109 @@ describe("compareFromFunctionReversed", () => {
     { a: { p: "b" }, b: { p: "a" }, fn: (o: any) => o.p, expected: -1 },
   ])("($a, $b) -> $expected", ({ a, b, fn, expected }) => {
     expect(compareFromFunctionReversed(fn)(a, b)).toEqual(expected);
+  });
+});
+
+describe("compareFromMany", () => {
+  test.each([
+    {
+      a: { p1: "a", p2: "b" },
+      b: { p1: "b", p2: "a" },
+      fns: [
+        { compareFn: compareFromProperty("p1"), weight: 2 },
+        { compareFn: compareFromProperty("p2"), weight: 1 },
+      ],
+      expected: -1,
+    },
+    {
+      a: { p1: "a", p2: "b" },
+      b: { p1: "b", p2: "a" },
+      fns: [
+        { compareFn: compareFromProperty("p1"), weight: 1 },
+        { compareFn: compareFromProperty("p2"), weight: 2 },
+      ],
+      expected: +1,
+    },
+    {
+      a: { p1: "", p2: "" },
+      b: { p1: "", p2: "" },
+      fns: [
+        { compareFn: compareFromProperty("p1"), weight: 2 },
+        { compareFn: compareFromProperty("p2"), weight: 1 },
+      ],
+      expected: 0,
+    },
+    {
+      a: { p1: "b", p2: "a" },
+      b: { p1: "a", p2: "b" },
+      fns: [
+        { compareFn: compareFromProperty("p1"), weight: 2 },
+        { compareFn: compareFromProperty("p2"), weight: 1 },
+      ],
+      expected: +1,
+    },
+    {
+      a: { p1: "b", p2: "a" },
+      b: { p1: "a", p2: "b" },
+      fns: [
+        { compareFn: compareFromProperty("p1"), weight: 1 },
+        { compareFn: compareFromProperty("p2"), weight: 2 },
+      ],
+      expected: -1,
+    },
+  ])("($a, $b) -> $expected", ({ a, b, fns, expected }) => {
+    expect(compareFromMany(fns as any)(a, b)).toEqual(expected);
+  });
+});
+
+describe("compareFromManyReversed", () => {
+  test.each([
+    {
+      a: { p1: "a", p2: "b" },
+      b: { p1: "b", p2: "a" },
+      fns: [
+        { compareFn: compareFromProperty("p1"), weight: 2 },
+        { compareFn: compareFromProperty("p2"), weight: 1 },
+      ],
+      expected: +1,
+    },
+    {
+      a: { p1: "a", p2: "b" },
+      b: { p1: "b", p2: "a" },
+      fns: [
+        { compareFn: compareFromProperty("p1"), weight: 1 },
+        { compareFn: compareFromProperty("p2"), weight: 2 },
+      ],
+      expected: -1,
+    },
+    {
+      a: { p1: "", p2: "" },
+      b: { p1: "", p2: "" },
+      fns: [
+        { compareFn: compareFromProperty("p1"), weight: 2 },
+        { compareFn: compareFromProperty("p2"), weight: 1 },
+      ],
+      expected: 0,
+    },
+    {
+      a: { p1: "b", p2: "a" },
+      b: { p1: "a", p2: "b" },
+      fns: [
+        { compareFn: compareFromProperty("p1"), weight: 2 },
+        { compareFn: compareFromProperty("p2"), weight: 1 },
+      ],
+      expected: -1,
+    },
+    {
+      a: { p1: "b", p2: "a" },
+      b: { p1: "a", p2: "b" },
+      fns: [
+        { compareFn: compareFromProperty("p1"), weight: 1 },
+        { compareFn: compareFromProperty("p2"), weight: 2 },
+      ],
+      expected: +1,
+    },
+  ])("($a, $b) -> $expected", ({ a, b, fns, expected }) => {
+    expect(compareFromManyReversed(fns as any)(a, b)).toEqual(expected);
   });
 });
