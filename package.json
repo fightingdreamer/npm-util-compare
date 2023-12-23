@@ -13,7 +13,7 @@
       "require": "./dist/util-compare.cjs"
     }
   },
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Missing default compare of two values.",
   "scripts": {
     "lint": "eslint lib",
