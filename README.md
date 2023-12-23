@@ -6,6 +6,8 @@ Missing compare of two values.
 
 Second implementation can compare property of two object.
 
+Third implementation can create compare function from custom getter function.
+
 ## Install
 
 ```bash
