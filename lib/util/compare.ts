@@ -47,7 +47,7 @@ export function compareFromFunction<T, V>(
 }
 
 /**
- * Compare two objects using custom function in reversed order.
+ * compare two objects in reversed order using custom function.
  * @returns (a, b) => +1, 0, -1
  */
 export function compareFromFunctionReversed<T, V>(
